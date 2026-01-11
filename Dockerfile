@@ -4,9 +4,11 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir -r requirements.txt
+# تثبيت المكتبات
+RUN pip install --no-cache-dir aiogram playwright
 
-# تثبيت المتصفح داخل الدوكر
-RUN playwright install chromium
+# تعديل هذا السطر لاستدعاء بلاي رايت عبر البايثون
+RUN python3 -m playwright install chromium
+RUN python3 -m playwright install-deps chromium
 
-CMD ["python", "id.py"]
+CMD ["python3", "id.py"]
