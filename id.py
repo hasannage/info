@@ -43,7 +43,7 @@ async def get_vaccine_result(id_number):
         page = await context.new_page()
         
         try:
-            await page.goto('https://vaccine.moh.ps/certificate', wait_until="networkidle", timeout=60000)
+            await page.goto('https://vaccine.moh.ps/certificate', wait_until="domcontentloaded", timeout=60000)
             
             # إدخال البيانات والضغط على الزر
             await page.fill('input[name="id_no"]', id_number)
@@ -100,4 +100,5 @@ if __name__ == '__main__':
     if not API_TOKEN:
         print("خطأ: لم يتم العثور على BOT_TOKEN في إعدادات البيئة!")
     else:
+
         asyncio.run(main())
